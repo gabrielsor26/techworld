@@ -1,9 +1,0 @@
-com\techclothes\jakarta\bk\resources\JakartaEE10Resource.class
-com\techclothes\util\Conexion.class
-com\techclothes\controller\CategoriaController.class
-com\techclothes\dao\CategoriaDAO.class
-com\techclothes\controller\ProductoController.class
-com\techclothes\dao\ProductoDAO.class
-com\techclothes\model\Categoria.class
-com\techclothes\model\Producto.class
-com\techclothes\jakarta\bk\JakartaRestConfiguration.class
