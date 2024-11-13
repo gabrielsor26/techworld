@@ -28,7 +28,9 @@ public class UsuarioDAO {
             try(ResultSet rs = stmt.executeQuery()){
                 while(rs.next()){
                     usuario = new Usuario(rs.getString("nombre"),
-                        rs.getString("email"),rs.getString("contraseña")
+                            rs.getString("email"),
+                            rs.getString("contraseña"),
+                            rs.getInt("rol_id")
                     );
 
                 }

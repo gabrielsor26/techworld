@@ -27,7 +27,17 @@ public class SignInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        handleRequest(request, response);
+
+
+        HttpSession session = request.getSession(false); // Obtener la sesión sin crear una nueva
+
+        if (session != null && session.getAttribute("nombre") != null) {
+            // Si la sesión existe y hay un usuario autenticado
+            response.sendRedirect("index.jsp"); // Redirigir al dashboard o a la página principal
+        } else {
+            // Si no hay sesión o usuario autenticado, mostrar la página de inicio de sesión
+            handleRequest(request, response);
+        }
     }
 
     private void handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +78,10 @@ public class SignInController extends HttpServlet {
             if (usuario != null) {
                 HttpSession session = req.getSession();
                 session.setAttribute("nombre", usuario.getName());
+                session.setAttribute("rol", usuario.getRol());
                 resp.sendRedirect("index.jsp");
+
+
 
             }else {
                 req.setAttribute("error", "Credenciales incorrectas");

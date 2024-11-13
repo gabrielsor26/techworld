@@ -2,7 +2,10 @@
 <%@ page session="true" %>
 <%
     String nombre = (String) session.getAttribute("nombre");
+    Integer rol = (Integer) session.getAttribute("rol");
+
 %>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,7 +13,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TechClothes - Tu Tienda de Ropa Tecnológica</title>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
@@ -40,24 +43,61 @@
         <nav class="bg-primary p-4 shadow-lg">
             <div class="container mx-auto flex justify-between items-center">
                 <a href="index.html" class="text-3xl font-bold text-white">TechClothes</a> <!-- Enlace al inicio -->
-                <div>
+                <div class="flex items-center">
                     <a href="index.jsp" class="text-white mx-3 hover:text-secondary">Inicio</a>
                     <a href="ProductoController?action=listar&view=catalogo" class="text-white mx-3 hover:text-secondary">Catálogo</a>
-                    <a href="carrito.html" class="text-white mx-3 hover:text-secondary">Carrito</a>
-                    <a href="ProductoController?action=listar&view=mantenimiento" class="text-white mx-3 hover:text-secondary">Mantenimiento</a>
+
+
                     <%
                         if (nombre == null) {
+
                     %>
+                        <a href="carrito.html" class="text-white mx-3 hover:text-secondary">Carrito</a>
                     <!-- Mostrar "Iniciar sesión" si no hay usuario en sesión -->
-                    <a href="SignInController?action=listar&view=SignIn" class="rounded p-2 text-black mx-3 hover:text-primary bg-background">Iniciar sesión</a>
-                    <%
-                    } else {
-                    %>
-                    <!-- Mostrar icono de usuario y opción para cerrar sesión -->
-                    <a href="UserProfileController" class="text-white mx-3 hover:text-secondary">
-                        <i class="fas fa-user"></i> <%= nombre %>
-                    </a>
-                    <a href="LogOutController" class="rounded p-2 text-black mx-3 hover:text-primary bg-background">Cerrar sesión</a>
+                        <a href="SignInController?action=listar&view=SignIn" class="rounded p-2 text-black mx-3 hover:text-primary bg-background">Iniciar sesión</a>
+                        <%
+                        }else{
+                            System.out.println("el valor de rol: "+rol);
+                            System.out.println("el valor de rol: "+nombre);
+                            if (rol == 1) {
+                        %>
+                        <a href="ProductoController?action=listar&view=mantenimiento" class="text-white mx-3 hover:text-secondary">Mantenimiento</a>
+                        <div class="relative">
+                            <button  class="btnUser text-white mx-3 hover:text-secondary flex items-center gap-2">
+                                <p><%= nombre %></p>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+
+                            <nav class="navBarUser hidden absolute z-10 flex flex-col  gap-3 p-3">
+                                <a href="LogOutController" class="text-white  hover:text-secondary">Ver perfil</a>
+                                <a href="LogOutController" class="text-white hover:text-secondary">Ajustes</a>
+                                <a href="LogOutController" class="text-white hover:text-secondary">Cerrar sesion</a>
+                            </nav>
+                        </div>
+
+                        <%
+                            } else if (rol == 2) {
+
+                        %>
+                        <a href="carrito.html" class="text-white mx-3 hover:text-secondary">Carrito</a>
+                        <!-- Mostrar icono de usuario y opción para cerrar sesión -->
+                        <div class="relative">
+                            <button  class="btnUser text-white mx-3 hover:text-secondary flex items-center gap-2">
+                                <p><%= nombre %></p>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+
+                            <nav class="navBarUser hidden absolute z-10 flex flex-col  gap-3 p-3">
+                                <a href="LogOutController" class="text-white  hover:text-secondary">Ver perfil</a>
+                                <a href="LogOutController" class="text-white  hover:text-secondary">Historial de compras</a>
+                                <a href="LogOutController" class="text-white hover:text-secondary">Ajustes</a>
+                                <a href="LogOutController" class="text-white hover:text-secondary">Cerrar sesion</a>
+                            </nav>
+                        </div>
+                        <%
+                        }
+                        %>
+
                     <%
                         }
                     %>
@@ -180,8 +220,8 @@
                 perView: 1,
             }).mount();
         </script>
+        <script src="assets/script.js"></script>
 
     </body>
 
 </html>
-
