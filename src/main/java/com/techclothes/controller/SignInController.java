@@ -1,6 +1,5 @@
 package com.techclothes.controller;
 
-
 import com.techclothes.dao.UsuarioDAO;
 import com.techclothes.model.Usuario;
 import jakarta.servlet.ServletException;
@@ -27,7 +26,6 @@ public class SignInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
         HttpSession session = request.getSession(false); // Obtener la sesión sin crear una nueva
 
@@ -64,7 +62,6 @@ public class SignInController extends HttpServlet {
         request.getRequestDispatcher("views/signIn.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
@@ -81,9 +78,7 @@ public class SignInController extends HttpServlet {
                 session.setAttribute("rol", usuario.getRol());
                 resp.sendRedirect("index.jsp");
 
-
-
-            }else {
+            } else {
                 req.setAttribute("error", "Credenciales incorrectas");
                 req.getRequestDispatcher("/views/signIn.jsp").forward(req, resp);
 

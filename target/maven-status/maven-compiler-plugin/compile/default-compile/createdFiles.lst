@@ -1,0 +1,6 @@
+com\techclothes\controller\LogOutController.class
+com\techclothes\model\Producto.class
+com\techclothes\jakarta\bk\JakartaRestConfiguration.class
+com\techclothes\jakarta\bk\resources\JakartaEE10Resource.class
+com\techclothes\model\Categoria.class
+com\techclothes\model\Usuario.class

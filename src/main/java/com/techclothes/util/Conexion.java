@@ -11,7 +11,7 @@ public class Conexion {
 
     private static final String URL = "jdbc:mysql://localhost:3306/techclothes";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "admin123";
+    private static final String PASSWORD = "";
 
     // Constructor privado para Singleton
     private Conexion() {
